@@ -1,0 +1,19 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  audit:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tap this checkout
+        run: |
+          brew tap-new --no-git jeremym/tap 2>/dev/null || true
+          rm -rf "$(brew --repository)/Library/Taps/jeremym/homebrew-tap"
+          ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/jeremym/homebrew-tap"
+      - run: brew style Casks/clipy-secure.rb
+      - run: brew audit --cask jeremym/tap/clipy-secure
