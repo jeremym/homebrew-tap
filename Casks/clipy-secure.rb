@@ -1,6 +1,6 @@
 cask "clipy-secure" do
-  version "1.0.0"
-  sha256 "0e47c7c99732c8541eb2eb61e3f6307f4cbcfda4a5a1b404c6c4118912adca9f"
+  version "1.2.0"
+  sha256 "844b461ba0dbc80912bcfed104952ed6804a0e9948cec85f243fb429942a4e2f"
 
   url "https://github.com/jeremym/clipy-secure/releases/download/v#{version}/ClipySecure-#{version}.zip"
   name "ClipySecure"
