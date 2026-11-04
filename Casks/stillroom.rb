@@ -1,8 +1,8 @@
 # Homebrew cask for jeremym/homebrew-tap (Casks/stillroom.rb).
 # scripts/update-tap.sh rewrites the `version` and `sha256` lines; keep their shape.
 cask "stillroom" do
-  version "0.1.0"
-  sha256 "521fbeb23bbe35be58cc1b26b99e87a983ba10a9a010e4b29651dc2d5c71e435"
+  version "0.4.0"
+  sha256 "f203b37a78599663449c326de1db00009a8d3a92d73da64de22080407641c56d"
 
   url "https://github.com/jeremym/stillroom/releases/download/v#{version}/Stillroom-#{version}.zip"
   name "Stillroom"
