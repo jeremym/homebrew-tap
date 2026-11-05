@@ -9,11 +9,18 @@ jobs:
   audit:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Tap this checkout
         run: |
           brew tap-new --no-git jeremym/tap 2>/dev/null || true
           rm -rf "$(brew --repository)/Library/Taps/jeremym/homebrew-tap"
           ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/jeremym/homebrew-tap"
-      - run: brew style Casks/clipy-secure.rb
-      - run: brew audit --cask jeremym/tap/clipy-secure
+          # Homebrew 7 refuses to load casks from a tap nobody has trusted; this runner trusts ours.
+          brew trust --tap jeremym/tap
+      - name: Style
+        run: brew style Casks
+      - name: Audit every cask
+        run: |
+          for cask in Casks/*.rb; do
+            brew audit --cask "jeremym/tap/$(basename "$cask" .rb)"
+          done
